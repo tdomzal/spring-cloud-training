@@ -1,3 +1,9 @@
 spring:
   jackson:
     default-property-inclusion: non_null
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8089/eureka/
+  instance:
+    prefer-ip-address: true

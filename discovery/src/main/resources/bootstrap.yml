@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: discovery-server
+  cloud:
+    config:
+      label: 03-Discovery-server
+
