@@ -7,8 +7,11 @@
 	<groupId>pl.training.cloud</groupId>
 	<artifactId>core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>configuration-server</module>
+    </modules>
 
-	<packaging>pom</packaging>
+    <packaging>pom</packaging>
 
 	<name>core</name>
 
