@@ -12,4 +12,8 @@
 
 	<name>core</name>
 
+    <modules>
+        <module>departments</module>
+    </modules>
+
 </project>
