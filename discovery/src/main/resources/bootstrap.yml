@@ -3,5 +3,5 @@ spring:
     name: discovery-server
   cloud:
     config:
-      label: 03-Discovery-server
+      label: 04-Gateway-API
 

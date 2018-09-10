@@ -1,6 +1,7 @@
 spring:
   application:
-    name: departments-microservice
+    name: gateway-server
   cloud:
     config:
       label: 04-Gateway-API
+
