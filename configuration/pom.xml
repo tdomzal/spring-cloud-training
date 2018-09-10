@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.training.cloud</groupId>
-    <artifactId>configuration-server</artifactId>
+    <artifactId>configuration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <parent>
@@ -23,7 +23,7 @@
     </properties>
 
     <build>
-        <finalName>configuration-server</finalName>
+        <finalName>configuration</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
