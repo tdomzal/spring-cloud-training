@@ -3,5 +3,4 @@ spring:
     name: departments-microservice
   cloud:
     config:
-      label: 02-Configuration-server
-      #uri: http://localhost:8888
+      label: 03-Discovery-server
