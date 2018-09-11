@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: users-microservice
+  cloud:
+    config:
+      label: 05-Exercise
