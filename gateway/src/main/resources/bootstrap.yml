@@ -3,4 +3,4 @@ spring:
     name: gateway-server
   cloud:
     config:
-      label: 05-Exercise
+      label: 06-Synchronous-communication
