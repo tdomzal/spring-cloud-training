@@ -4,7 +4,10 @@ import feign.FeignException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.stereotype.Service;
 import pl.training.cloud.users.dto.DepartmentDto;
 
@@ -31,6 +34,12 @@ public class FeignDepartmentsService implements DepartmentsService {
             log.warning("Fetching department with id " + departmentId + " failed");
         }
         return Optional.empty();
+    }
+
+    @CacheEvict(value = "departments", allEntries = true)
+    @StreamListener(Sink.INPUT)
+    public void onDepartmentUpdate(String message) {
+        System.out.println("Cleaning departments cache");
     }
 
 }

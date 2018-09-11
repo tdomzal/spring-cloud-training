@@ -15,17 +15,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DepartmentChangeNotifier {
 
-    /*@Pointcut("bean(departmentsService) && !execution(* pl.training.cloud.departments.service.DepartmentsService.get*(..)) && args(department)")
-    public void onChange(Department department) {
-    }*/
-
     @NonNull
     private Source source;
 
     @AfterReturning("@annotation(Notify)")
     public void sendNotification() {
         log.info("Sending notification");
-        source.output().send(MessageBuilder.withPayload("new-update").build());
+        source.output().send(MessageBuilder.withPayload("departments-update").build());
     }
 
 }
