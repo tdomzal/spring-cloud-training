@@ -4,3 +4,7 @@ spring:
   cloud:
     config:
       label: 07-Asynchronous-communication
+    stream:
+      default:
+        producer:
+          headerMode: none
