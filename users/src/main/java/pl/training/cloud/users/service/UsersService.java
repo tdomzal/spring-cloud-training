@@ -22,7 +22,7 @@ public class UsersService {
     @NonNull
     private DepartmentsService departmentsService;
     @Setter
-    @Value("defaultDepartmentId")
+    @Value("${defaultDepartmentId}")
     private Long defaultDepartmentId;
 
     public void addUser(User user) {
