@@ -10,4 +10,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: new-departments
+          content-type: application/json
+          group: departments
 defaultDepartmentId: 1

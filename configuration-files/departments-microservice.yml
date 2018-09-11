@@ -1,3 +1,9 @@
 spring:
   messages:
     basename: exceptions
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: new-users
+          content-type: application/json
