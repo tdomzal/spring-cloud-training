@@ -3,5 +3,4 @@ spring:
     name: gateway-server
   cloud:
     config:
-      label: 04-Gateway-API
-
+      label: 05-Exercise

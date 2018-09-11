@@ -3,4 +3,4 @@ spring:
     name: departments-microservice
   cloud:
     config:
-      label: 04-Gateway-API
+      label: 05-Exercise
