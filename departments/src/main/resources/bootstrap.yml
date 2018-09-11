@@ -3,4 +3,4 @@ spring:
     name: departments-microservice
   cloud:
     config:
-      label: 06-Synchronous-communication
+      label: 07-Asynchronous-communication
