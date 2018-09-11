@@ -14,7 +14,7 @@ spring:
     stream:
       bindings:
         input:
-          destination: new-departments
+          destination: departments
           content-type: application/json
           group: departments
 defaultDepartmentId: 1

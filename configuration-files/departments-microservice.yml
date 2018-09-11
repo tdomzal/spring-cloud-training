@@ -5,5 +5,5 @@ spring:
     stream:
       bindings:
         output:
-          destination: new-users
+          destination: departments
           content-type: application/json

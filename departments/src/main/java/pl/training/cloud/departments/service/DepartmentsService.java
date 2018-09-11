@@ -13,6 +13,7 @@ public class DepartmentsService {
     @NonNull
     private DepartmentsRepository departmentsRepository;
 
+    @Notify
     public Department addDepartment(Department department) {
         departmentsRepository.saveAndFlush(department);
         return department;
@@ -23,11 +24,13 @@ public class DepartmentsService {
                 .orElseThrow(DepartmentNotFoundException::new);
     }
 
+    @Notify
     public void updateDepartment(Department department) {
         getDepartmentById(department.getId());
         departmentsRepository.save(department);
     }
 
+    @Notify
     public void deleteDepartmentWithId(Long id) {
         departmentsRepository.deleteById(id);
     }
