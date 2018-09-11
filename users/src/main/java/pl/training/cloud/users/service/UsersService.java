@@ -21,7 +21,7 @@ public class UsersService {
     }
 
     public ResultPage<User> getUsers(int pageNumber, int pageSize) {
-        Page<User> usersPage = usersRepository.findAll(new PageRequest(pageNumber, pageSize));
+        Page<User> usersPage = usersRepository.findAll(PageRequest.of(pageNumber, pageSize));
         return new ResultPage<>(usersPage.getContent(), usersPage.getNumber(), usersPage.getTotalPages());
     }
 

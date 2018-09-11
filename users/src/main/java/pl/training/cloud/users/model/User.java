@@ -7,8 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Data
 @Entity
+@Data
 public class User {
 
     @GeneratedValue
