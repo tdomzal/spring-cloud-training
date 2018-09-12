@@ -16,12 +16,12 @@ import pl.training.cloud.users.dto.DepartmentDto;
 
 import java.util.Optional;
 
-@DefaultProperties(
+/*@DefaultProperties(
         commandProperties = {
                 @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
                 @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "10")
         }
-)
+)*/
 @Log
 @RequiredArgsConstructor
 @Service
@@ -30,7 +30,7 @@ public class FeignDepartmentsService implements DepartmentsService {
     @NonNull
     private FeignDepartmentsClient departmentsClient;
 
-    @HystrixCommand(
+    /*@HystrixCommand(
             threadPoolKey = "departments",
             threadPoolProperties = {
                     @HystrixProperty(name = "coreSize", value = "10"),
@@ -41,19 +41,19 @@ public class FeignDepartmentsService implements DepartmentsService {
                     @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
                     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000")
             }
-    )
-    //@Cacheable(value = "departments", unless = "#result == null")
+    )*/
+    @Cacheable(value = "departments", unless = "#result == null")
     @Override
     public Optional<String> getDepartmentName(Long departmentId) {
-       // try {
+        try {
             DepartmentDto departmentDto = departmentsClient.getDepartment(departmentId);
             if (departmentDto != null) {
                 log.warning("Fetching department...");
                 return Optional.of(departmentDto.getName());
             }
-        /*} catch (FeignException ex) {
+        } catch (FeignException ex) {
             log.warning("Fetching department with id " + departmentId + " failed");
-        }*/
+        }
         return Optional.empty();
     }
 

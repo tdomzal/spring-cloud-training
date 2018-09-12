@@ -29,14 +29,14 @@ public class DepartmentsService {
         return department;
     }
 
-   /* @HystrixCommand(fallbackMethod = "getDepartmentByIdFallback",
+    @HystrixCommand(fallbackMethod = "getDepartmentByIdFallback",
             ignoreExceptions = DepartmentNotFoundException.class,
-            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"))*/
+            commandProperties = @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000"))
     public Department getDepartmentById(Long id) {
         //fakeDelay();
-        throw new RuntimeException();
-        /*return departmentsRepository.getById(id)
-                .orElseThrow(DepartmentNotFoundException::new);*/
+        //throw new RuntimeException();
+        return departmentsRepository.getById(id)
+                .orElseThrow(DepartmentNotFoundException::new);
     }
 
     public Department getDepartmentByIdFallback(Long id) {
