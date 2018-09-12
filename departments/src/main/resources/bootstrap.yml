@@ -4,3 +4,8 @@ spring:
   cloud:
     config:
       label: 08-Availability
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

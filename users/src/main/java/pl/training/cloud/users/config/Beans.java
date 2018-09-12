@@ -1,5 +1,6 @@
 package pl.training.cloud.users.config;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -15,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
+@EnableAdminServer
 @EnableBinding(Sink.class)
 @EnableFeignClients(basePackages = "pl.training.cloud")
 @EnableCaching
