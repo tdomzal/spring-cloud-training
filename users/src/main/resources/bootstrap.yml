@@ -3,4 +3,4 @@ spring:
     name: users-microservice
   cloud:
     config:
-      label: 07-Asynchronous-communication
+      label: 08-Availability
