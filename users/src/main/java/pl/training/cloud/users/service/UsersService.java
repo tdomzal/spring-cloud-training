@@ -1,11 +1,10 @@
 package pl.training.cloud.users.service;
 
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import pl.training.cloud.users.config.DepartmentsConfig;
 import pl.training.cloud.users.model.ResultPage;
 import pl.training.cloud.users.model.User;
 import pl.training.cloud.users.repository.UsersRepository;
@@ -15,18 +14,19 @@ public class UsersService {
 
     private UsersRepository usersRepository;
     private DepartmentsService departmentsService;
-    @Setter
-    @Value("${defaultDepartmentId}")
-    private Long defaultDepartmentId;
+    private DepartmentsConfig departmentsConfig;
 
-    public UsersService(UsersRepository usersRepository, @Qualifier("feignDepartmentsService") DepartmentsService departmentsService) {
+    public UsersService(UsersRepository usersRepository,
+                        @Qualifier("feignDepartmentsService") DepartmentsService departmentsService,
+                        DepartmentsConfig departmentsConfig) {
         this.usersRepository = usersRepository;
         this.departmentsService = departmentsService;
+        this.departmentsConfig = departmentsConfig;
     }
 
     public void addUser(User user) {
         if (user.getDepartmentId() == null) {
-            user.setDepartmentId(defaultDepartmentId);
+            user.setDepartmentId(departmentsConfig.getDefaultDepartmentId());
         }
         usersRepository.saveAndFlush(user);
     }
