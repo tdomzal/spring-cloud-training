@@ -45,15 +45,15 @@ public class FeignDepartmentsService implements DepartmentsService {
     //@Cacheable(value = "departments", unless = "#result == null")
     @Override
     public Optional<String> getDepartmentName(Long departmentId) {
-        try {
+       // try {
             DepartmentDto departmentDto = departmentsClient.getDepartment(departmentId);
             if (departmentDto != null) {
                 log.warning("Fetching department...");
                 return Optional.of(departmentDto.getName());
             }
-        } catch (FeignException ex) {
+        /*} catch (FeignException ex) {
             log.warning("Fetching department with id " + departmentId + " failed");
-        }
+        }*/
         return Optional.empty();
     }
 
