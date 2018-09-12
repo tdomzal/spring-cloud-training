@@ -28,3 +28,22 @@ Content-Type: application/x-www-form-urlencoded
 path=users-microservice
 
 ###
+
+POST http://localhost:8000/departments
+Content-Type: application/json
+
+{"name": "Training"}
+
+###
+
+POST http://localhost:8001/departments
+Content-Type: application/json
+
+{"name": "Test"}
+
+###
+
+GET http://localhost:8002/users
+Accept: application/json
+
+###

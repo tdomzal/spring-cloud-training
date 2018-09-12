@@ -9,3 +9,4 @@ management:
     web:
       exposure:
         include: '*'
+defaultDepartmentName: Unknown
