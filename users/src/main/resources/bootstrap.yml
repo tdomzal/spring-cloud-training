@@ -3,7 +3,7 @@ spring:
     name: users-microservice
   cloud:
     config:
-      label: 08-Availability
+      label: 09-Exercise
 management:
   endpoints:
     web:

@@ -3,4 +3,4 @@ spring:
     name: discovery-server
   cloud:
     config:
-      label: 08-Availability
+      label: 09-Exercise
