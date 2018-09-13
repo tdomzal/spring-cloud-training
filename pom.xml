@@ -19,6 +19,7 @@
         <module>gateway</module>
         <module>users</module>
         <module>zipkin</module>
+        <module>payments</module>
     </modules>
 
 </project>
