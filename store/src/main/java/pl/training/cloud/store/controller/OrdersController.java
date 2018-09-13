@@ -8,7 +8,7 @@ import pl.training.cloud.store.dto.OrderRequestDto;
 import pl.training.cloud.store.model.Mapper;
 import pl.training.cloud.store.model.Order;
 import pl.training.cloud.store.model.OrderRequest;
-import pl.training.cloud.store.service.OrdersService;
+import pl.training.cloud.store.service.StoreService;
 
 import java.net.URI;
 
@@ -18,7 +18,7 @@ import java.net.URI;
 public class OrdersController {
 
     @NonNull
-    private OrdersService ordersService;
+    private StoreService storeService;
     @NonNull
     private Mapper mapper;
     private UriBuilder uriBuilder = new UriBuilder();
@@ -26,8 +26,7 @@ public class OrdersController {
     @RequestMapping(value = "orders", method = RequestMethod.POST)
     public ResponseEntity placeOrder(@RequestBody OrderRequestDto orderRequestDto) {
         OrderRequest orderRequest = mapper.map(orderRequestDto, OrderRequest.class);
-        Order order = ordersService.createOrder(orderRequest);
-        ordersService.processOrder(orderRequest, order);
+        Order order = storeService.placeOrder(orderRequest);
         URI uri = uriBuilder.requestUriWithId(order.getTransactionId());
         return ResponseEntity.created(uri).build();
     }

@@ -26,8 +26,6 @@ public class OrdersService {
     @NonNull
     private PaymentsService paymentsService;
 
-    // todo: blokwanie entity
-
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Order createOrder(OrderRequest orderRequest) {
         Product product = productsService.reserveProduct(orderRequest.getProductId());
