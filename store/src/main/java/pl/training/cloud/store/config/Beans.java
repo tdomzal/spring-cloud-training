@@ -39,13 +39,13 @@ public class Beans {
     public void init() {
         Product product = new Product();
         product.setName("iPhone Xs");
-        product.setPrice(9999999999L);
-        product.setQuantity(1);
+        product.setPrice(1L);
+        product.setQuantity(1000);
         productRepository.save(product);
         product = new Product();
         product.setName("iPhone Xs MAX");
         product.setPrice(88888888L);
-        product.setQuantity(2);
+        product.setQuantity(1000);
         productRepository.save(product);
     }
 

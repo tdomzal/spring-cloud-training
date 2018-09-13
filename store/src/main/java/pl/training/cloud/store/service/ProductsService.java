@@ -10,6 +10,7 @@ import pl.training.cloud.store.repository.ProductRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @Log
 @Transactional
@@ -25,10 +26,24 @@ public class ProductsService {
     }
 
     public Product reserveProduct(Long productId) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(IllegalArgumentException::new);
-        product.reserve();
+        return process(productId, Product::reserve);
+    }
+
+    private Product getProduct(Long productId) {
+        return productRepository.findById(productId)
+                    .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public Product releaseProduct(Long productId) {
+        return process(productId, Product::release);
+    }
+
+    private Product process(Long productId, Consumer<Product> callback) {
+        Product product = getProduct(productId);
+        callback.accept(product);
+        productRepository.save(product);
         return product;
     }
+
 
 }

@@ -23,10 +23,14 @@ public class Product {
 
     public void reserve() {
         if (isAvailable()) {
-            quantity -= 1;
+            quantity--;
         } else {
             throw new IllegalStateException();
         }
+    }
+
+    public void release() {
+        quantity++;
     }
 
 }

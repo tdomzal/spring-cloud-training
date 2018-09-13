@@ -9,5 +9,6 @@ public class OrderRequest {
     private String ccv;
     private long expirationDate;
     private Long productId;
+    private long amount;
 
 }
