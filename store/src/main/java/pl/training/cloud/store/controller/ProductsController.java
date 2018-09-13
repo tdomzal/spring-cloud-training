@@ -3,26 +3,27 @@ package pl.training.cloud.store.controller;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pl.training.cloud.store.dto.ProductDto;
 import pl.training.cloud.store.model.Mapper;
-import pl.training.cloud.store.service.StoreService;
+import pl.training.cloud.store.service.ProductsService;
 
 import java.util.List;
 
 @RequestMapping("store")
 @RequiredArgsConstructor
 @RestController
-public class StoreController {
+public class ProductsController {
 
     @NonNull
-    private StoreService storeService;
+    private ProductsService productsService;
     @NonNull
     private Mapper mapper;
 
-    @RequestMapping("products")
+    @RequestMapping(value = "products", method = RequestMethod.GET)
     public List<ProductDto> getProducts() {
-        return mapper.map(storeService.getProducts(), ProductDto.class);
+        return mapper.map(productsService.getProducts(), ProductDto.class);
     }
 
 }

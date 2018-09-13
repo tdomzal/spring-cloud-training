@@ -63,7 +63,7 @@ public class PaymentService {
         source.output().send(MessageBuilder.withPayload(paymentStatusDto).build());
     }
 
-    public Payment getPaymentStatus(String transactionId) {
+    public Payment getPayment(String transactionId) {
         return paymentsRepository.getByTransactionId(transactionId)
                 .orElseThrow(IllegalArgumentException::new);
     }

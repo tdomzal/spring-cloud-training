@@ -8,6 +8,7 @@ import pl.training.cloud.payments.dto.PaymentInfoDto;
 import pl.training.cloud.payments.dto.PaymentStatusDto;
 import pl.training.cloud.payments.model.Mapper;
 import pl.training.cloud.payments.model.PaymentInfo;
+import pl.training.cloud.payments.model.PaymentStatus;
 import pl.training.cloud.payments.service.PaymentService;
 
 import java.net.URI;
@@ -28,11 +29,17 @@ public class PaymentController {
         PaymentInfo paymentInfo = mapper.map(paymentInfoDto, PaymentInfo.class);
         String transactionId = paymentService.pay(paymentInfo);
         URI uri = uriBuilder.requestUriWithId(transactionId);
-        return ResponseEntity.created(uri).build();
+        PaymentStatusDto paymentStatusDto = getPaymentStatusDto(transactionId);
+        return ResponseEntity.created(uri).body(paymentStatusDto);
     }
+
+    private PaymentStatusDto getPaymentStatusDto(String transactionId) {
+        return mapper.map(paymentService.getPayment(transactionId), PaymentStatusDto.class);
+    }
+
     @RequestMapping(value = "{transaction-id}", method = RequestMethod.GET)
     public ResponseEntity getPaymentStatus(@PathVariable("transaction-id") String transactionId) {
-        PaymentStatusDto paymentStatusDto = mapper.map(paymentService.getPaymentStatus(transactionId), PaymentStatusDto.class);
+        PaymentStatusDto paymentStatusDto = getPaymentStatusDto(transactionId);
         return ResponseEntity.ok(paymentStatusDto);
     }
 

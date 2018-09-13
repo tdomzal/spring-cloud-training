@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: store-microservice
+  cloud:
+    config:
+      label: 09-Exercise

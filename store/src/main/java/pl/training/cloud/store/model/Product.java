@@ -17,4 +17,16 @@ public class Product {
     private long price;
     private int quantity;
 
+    private boolean isAvailable() {
+        return quantity > 0;
+    }
+
+    public void reserve() {
+        if (isAvailable()) {
+            quantity -= 1;
+        } else {
+            throw new IllegalStateException();
+        }
+    }
+
 }

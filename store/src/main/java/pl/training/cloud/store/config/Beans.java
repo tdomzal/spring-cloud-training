@@ -1,6 +1,7 @@
 package pl.training.cloud.store.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import javax.annotation.PostConstruct;
 import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
 import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
+@EnableFeignClients(basePackages = "pl.training.cloud")
 @EnableBinding(Sink.class)
 @EnableSwagger2
 @Configuration
