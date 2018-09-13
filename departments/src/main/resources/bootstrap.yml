@@ -3,7 +3,7 @@ spring:
     name: departments-microservice
   cloud:
     config:
-      label: 09-Exercise
+      label: 10-Security
 management:
   endpoints:
     web:
