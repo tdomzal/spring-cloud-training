@@ -3,4 +3,10 @@ spring:
     name: departments-microservice
   cloud:
     config:
-      label: 10-Security
+      label: 09-Exercise
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+defaultDepartmentName: Unknown
