@@ -1,33 +1,29 @@
 package pl.training.cloud.users.controller;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import pl.training.cloud.users.dto.ExceptionDto;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import pl.training.cloud.users.model.Mapper;
 
 import java.util.Locale;
 
-@RequiredArgsConstructor
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @NonNull
-    private MessageSource messageSource;
+    private Mapper mapper;
 
-    private ResponseEntity createResponse(Exception ex, HttpStatus status, Locale locale) {
-        String exceptionName = ex.getClass().getSimpleName();
-        String description;
-        try {
-            description = messageSource.getMessage(ex.getClass().getSimpleName(), null, locale);
-        } catch (NoSuchMessageException exception) {
-            description = exceptionName;
+    @Autowired
+    public GlobalExceptionHandler(Mapper mapper) {
+        this.mapper = mapper;
+    }
 
-        }
-        return ResponseEntity.status(status).body(new ExceptionDto(description));
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity onException(Exception ex, Locale locale) {
+        ex.printStackTrace();
+        return new ResponseEntity<>(mapper.map(ex, locale), INTERNAL_SERVER_ERROR);
     }
 
 }

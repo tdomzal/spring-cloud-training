@@ -4,33 +4,32 @@ import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import feign.FeignException;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.stereotype.Service;
-import pl.training.cloud.users.dto.DepartmentDto;
+import pl.training.cloud.users.model.Department;
 
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/*@DefaultProperties(
+@DefaultProperties(
         commandProperties = {
                 @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
                 @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "10")
         }
-)*/
-@Log
-@RequiredArgsConstructor
+)
 @Service
 public class FeignDepartmentsService implements DepartmentsService {
 
-    @NonNull
-    private FeignDepartmentsClient departmentsClient;
+    private FeignDepartmentsClient feignDepartmentsClient;
 
-    /*@HystrixCommand(
+    @Autowired
+    public FeignDepartmentsService(FeignDepartmentsClient feignDepartmentsClient) {
+        this.feignDepartmentsClient = feignDepartmentsClient;
+    }
+
+    @HystrixCommand(
             threadPoolKey = "departments",
             threadPoolProperties = {
                     @HystrixProperty(name = "coreSize", value = "10"),
@@ -41,26 +40,16 @@ public class FeignDepartmentsService implements DepartmentsService {
                     @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
                     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000")
             }
-    )*/
-    @Cacheable(value = "departments", unless = "#result == null")
+    )
+    //@Cacheable(value = "departments", unless = "#result == null")
     @Override
-    public Optional<String> getDepartmentName(Long departmentId) {
+    public Optional<Department> getDepartmentById(Long id) {
         try {
-            DepartmentDto departmentDto = departmentsClient.getDepartment(departmentId);
-            if (departmentDto != null) {
-                log.warning("Fetching department...");
-                return Optional.of(departmentDto.getName());
-            }
+            return Optional.of(feignDepartmentsClient.getDepartmentById(id));
         } catch (FeignException ex) {
-            log.warning("Fetching department with id " + departmentId + " failed");
+            Logger.getLogger(getClass().getName()).log(Level.INFO, "### Fetching department failed");
         }
         return Optional.empty();
-    }
-
-    @CacheEvict(value = "departments", allEntries = true)
-    @StreamListener(Sink.INPUT)
-    public void onDepartmentUpdate(String message) {
-        System.out.println("Cleaning departments cache");
     }
 
 }

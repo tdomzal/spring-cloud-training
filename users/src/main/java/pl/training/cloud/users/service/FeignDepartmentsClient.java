@@ -1,14 +1,15 @@
 package pl.training.cloud.users.service;
 
-import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.training.cloud.users.dto.DepartmentDto;
+import org.springframework.web.bind.annotation.RequestMethod;
+import pl.training.cloud.users.model.Department;
 
 @FeignClient("departments-microservice")
 public interface FeignDepartmentsClient {
 
-    @RequestMapping("departments/{department-id}")
-    DepartmentDto getDepartment(@PathVariable("department-id") Long departmentId);
+    @RequestMapping(method = RequestMethod.GET, value = "departments/{id}")
+    Department getDepartmentById(@PathVariable("id") Long id);
 
 }

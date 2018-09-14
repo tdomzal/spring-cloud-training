@@ -12,3 +12,7 @@ eureka:
       defaultZone: http://localhost:8089/eureka/
   instance:
     preferIpAddress: true
+hystrix:
+  shareSecurityContext: true
+signing:
+  key: "{cipher}4f2e7d4a4d9494a3d482c0e42be9a1f048ece04c276df7cc62e6fa00825a3d42"

@@ -1,9 +1,11 @@
 package pl.training.cloud.users.service;
 
+import pl.training.cloud.users.model.Department;
+
 import java.util.Optional;
 
 public interface DepartmentsService {
 
-    Optional<String> getDepartmentName(Long departmentId);
+    Optional<Department> getDepartmentById(Long id);
 
 }
