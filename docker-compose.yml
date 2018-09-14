@@ -21,6 +21,19 @@ services:
     networks:
       cloud:
         ipv4_address: ${CONFIGURATION_SERVER}
+  discovery_server:
+    image: training/discovery
+    ports:
+    - 8001:8080
+    environment:
+    - ENCRYPT_KEY=${ENCRYPT_KEY}
+    - PING_TIMEOUT=${PING_TIMEOUT}
+    - CONFIGURATION_SERVER_URI=${CONFIGURATION_SERVER_URI}
+    - DEFAULT_PORT=${DEFAULT_PORT}
+    - CONFIGURATION_SERVER_PORT=${CONFIGURATION_SERVER_PORT}
+    networks:
+      cloud:
+        ipv4_address: ${DISCOVERY_SERVER}
 networks:
   cloud:
     driver: bridge
