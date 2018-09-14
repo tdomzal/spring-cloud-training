@@ -7,3 +7,4 @@ docker build -t "training/configuration" configuration
 docker build -t "training/discovery" discovery
 docker build -t "training/gateway" gateway
 docker build -t "training/users" users
+docker build -t "training/departments" departments

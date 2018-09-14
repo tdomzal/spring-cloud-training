@@ -78,6 +78,31 @@ services:
     networks:
       cloud:
 
+  departments_database:
+    image: postgres:10.5-alpine
+    environment:
+    - POSTGRES_DB=departments
+    - POSTGRES_USER=admin
+    - POSTGRES_PASSWORD=admin
+    - PGDATA=/var/lib/postgresql/data/application
+    volumes:
+    - ./data/departments:/var/lib/postgresql/data/application
+    networks:
+      cloud:
+        ipv4_address: ${DEPARTMENTS_DATABASE_SERVER}
+
+  departments_microservice:
+    image: training/departments
+    environment:
+    - ENCRYPT_KEY=${ENCRYPT_KEY}
+    - PING_TIMEOUT=${PING_TIMEOUT}
+    - CONFIGURATION_SERVER_URI=${CONFIGURATION_SERVER_URI}
+    - DEFAULT_PORT=${DEFAULT_PORT}
+    - CONFIGURATION_SERVER_PORT=${CONFIGURATION_SERVER_PORT}
+    - DEFAULT_PROFILE=${DEFAULT_PROFILE}
+    networks:
+      cloud:
+
 networks:
   cloud:
     driver: bridge
