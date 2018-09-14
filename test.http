@@ -86,3 +86,7 @@ POST http://localhost:8888/encrypt
 springsecurity
 
 ###
+
+GET http://localhost:8888/10-Security/users-microservice.yml
+
+###
