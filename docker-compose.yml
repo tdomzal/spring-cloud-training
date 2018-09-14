@@ -3,8 +3,8 @@ services:
   kafka_server:
     image: spotify/kafka
     ports:
-      - "2181:2181"
-      - "9092:9092"
+      - "2181"
+      - "9092"
     environment:
       - TOPICS=departments
       - ADVERTISED_HOST=${KAFKA_SERVER}
