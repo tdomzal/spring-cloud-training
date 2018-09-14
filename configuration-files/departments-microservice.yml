@@ -7,3 +7,7 @@ spring:
         output:
           destination: departments
           content-type: application/json
+security:
+  oauth2:
+    resource:
+      filter-order: 3
