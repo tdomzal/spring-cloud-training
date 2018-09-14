@@ -5,3 +5,4 @@ docker rmi $(docker images | grep "<none>")
 #build
 docker build -t "training/configuration" configuration
 docker build -t "training/discovery" discovery
+docker build -t "training/gateway" gateway

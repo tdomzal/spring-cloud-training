@@ -12,8 +12,11 @@ services:
     networks:
       cloud:
         ipv4_address: ${KAFKA_SERVER}
+
   configuration_server:
     image: training/configuration
+    ports:
+      - 8888:8888
     environment:
       - ENCRYPT_KEY=${ENCRYPT_KEY}
       - DEFAULT_PROFILE=${DEFAULT_PROFILE}
@@ -21,6 +24,7 @@ services:
     networks:
       cloud:
         ipv4_address: ${CONFIGURATION_SERVER}
+
   discovery_server:
     image: training/discovery
     ports:
@@ -34,6 +38,22 @@ services:
     networks:
       cloud:
         ipv4_address: ${DISCOVERY_SERVER}
+
+  gateway_server:
+    image: training/gateway
+    restart: on-failure
+    ports:
+    - 8000:8080
+    environment:
+    - ENCRYPT_KEY=${ENCRYPT_KEY}
+    - PING_TIMEOUT=${PING_TIMEOUT}
+    - CONFIGURATION_SERVER_URI=${CONFIGURATION_SERVER_URI}
+    - DEFAULT_PORT=${DEFAULT_PORT}
+    - CONFIGURATION_SERVER_PORT=${CONFIGURATION_SERVER_PORT}
+    networks:
+      cloud:
+        ipv4_address: ${GATEWAY_SERVER}
+
 networks:
   cloud:
     driver: bridge
