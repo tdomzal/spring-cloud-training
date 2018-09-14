@@ -48,9 +48,5 @@ public class Beans {
         return new OAuth2FeignRequestInterceptor();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
-    }
 
 }

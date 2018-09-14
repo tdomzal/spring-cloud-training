@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import pl.training.cloud.users.model.Authority;
@@ -39,6 +40,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(usersService).passwordEncoder(passwordEncoder);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new StandardPasswordEncoder();
     }
 
     @PostConstruct

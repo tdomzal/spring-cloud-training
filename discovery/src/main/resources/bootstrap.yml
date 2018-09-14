@@ -3,4 +3,4 @@ spring:
     name: discovery-server
   cloud:
     config:
-      label: 10-Security
+      label: 11-Docker

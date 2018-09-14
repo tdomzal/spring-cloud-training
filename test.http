@@ -46,6 +46,7 @@ Content-Type: application/json
 
 GET http://localhost:8002/users
 Accept: application/json
+#Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbIndlYmFwcCJdLCJvcmdhbml6YXRpb24iOiJUcmFpbmluZyIsImV4cCI6MTUzNjk1NDI0NSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJqdGkiOiI5YjY3ZmQ5NS04NzJiLTRiNDQtOWI5YS0wNmFhZDEwMmZjY2QiLCJjbGllbnRfaWQiOiJ0cmFpbmluZyJ9.j3U2RoaAnjzv8ott-9wPOZbgciWdEY00yUzEUWZ97vE
 
 ###
 

@@ -3,7 +3,7 @@ spring:
     name: departments-microservice
   cloud:
     config:
-        label: 10-Security
+        label: 11-Docker
 management:
   endpoints:
     web:
