@@ -3,6 +3,5 @@ spring:
     name: users-microservice
   cloud:
     config:
-      #uri: http://localhost:8888
-      label: 09-Security
+      label: 10-Security
 
