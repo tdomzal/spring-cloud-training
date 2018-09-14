@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+  kafka_server:
+    image: spotify/kafka
+    ports:
+      - "2181:2181"
+      - "9092:9092"
+    environment:
+      - TOPICS=departments
+      - ADVERTISED_HOST=${KAFKA_SERVER}
+      - ADVERTISED_PORT=9092
+    networks:
+      cloud:
+        ipv4_address: ${KAFKA_SERVER}
+  configuration_server:
+    image: training/configuration
+    environment:
+      - ENCRYPT_KEY=${ENCRYPT_KEY}
+      - DEFAULT_PROFILE=${DEFAULT_PROFILE}
+      - PING_TIMEOUT=${PING_TIMEOUT}
+    networks:
+      cloud:
+        ipv4_address: ${CONFIGURATION_SERVER}
+networks:
+  cloud:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${SUBNET}
