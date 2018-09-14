@@ -6,7 +6,7 @@ spring:
     password: "{cipher}dae561b74c0094a7a9cbe1e39c388600b2cce09dc97b9587c90802a47603289c"
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
   cloud:
     stream:
       kafka:

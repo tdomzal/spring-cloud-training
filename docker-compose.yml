@@ -41,7 +41,6 @@ services:
 
   gateway_server:
     image: training/gateway
-    restart: on-failure
     ports:
     - 8000:8080
     environment:
@@ -53,6 +52,31 @@ services:
     networks:
       cloud:
         ipv4_address: ${GATEWAY_SERVER}
+
+  users_database:
+    image: postgres:10.5-alpine
+    environment:
+      - POSTGRES_DB=users
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - PGDATA=/var/lib/postgresql/data/application
+    volumes:
+      - ./data/users:/var/lib/postgresql/data/application
+    networks:
+      cloud:
+        ipv4_address: ${USERS_DATABASE_SERVER}
+
+  users_microservice:
+    image: training/users
+    environment:
+    - ENCRYPT_KEY=${ENCRYPT_KEY}
+    - PING_TIMEOUT=${PING_TIMEOUT}
+    - CONFIGURATION_SERVER_URI=${CONFIGURATION_SERVER_URI}
+    - DEFAULT_PORT=${DEFAULT_PORT}
+    - CONFIGURATION_SERVER_PORT=${CONFIGURATION_SERVER_PORT}
+    - DEFAULT_PROFILE=${DEFAULT_PROFILE}
+    networks:
+      cloud:
 
 networks:
   cloud:
