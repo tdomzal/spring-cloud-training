@@ -18,7 +18,6 @@ public class UriBuilder {
     };
     public static final String ALL_URIS = "/**";
 
-
     public URI requestUriWithId(long id) {
         return ServletUriComponentsBuilder.fromCurrentRequestUri()
                 .path("/{id}")

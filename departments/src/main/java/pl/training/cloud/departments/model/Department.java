@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@RequiredArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Data
 @Entity
 public class Department {

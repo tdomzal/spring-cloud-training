@@ -4,9 +4,3 @@ spring:
   cloud:
     config:
       label: 10-Security
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-defaultDepartmentName: Unknown
