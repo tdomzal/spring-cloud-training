@@ -1,0 +1,6 @@
+GET http://localhost:8000/departments/1
+Accept: application/json
+
+
+
+###
